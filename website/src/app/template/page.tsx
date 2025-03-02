@@ -268,27 +268,6 @@ GROUP BY category_id;`
           </div>
           <p className="text-xs text-gray-400 mt-2">Sample data visualization - Users table</p>
         </div>
-        
-        {/* Kubernetes Config Example */}
-        <div className="p-6 border-t border-gray-700">
-          <h3 className="font-semibold mb-2 text-lg text-gray-200">Kubernetes PersistentVolumeClaim Example</h3>
-          <CodeBlock 
-            code={`apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: postgres-volume-claim
-  labels:
-    app: postgres
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 10Gi`} 
-            language="yaml" 
-          />
-        </div>
       </div>
     </div>
   );
