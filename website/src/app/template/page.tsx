@@ -1,11 +1,31 @@
-import { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "WhichDBToUse - PostgreSQL",
-  description: "PostgreSQL database information and use cases",
-  icons: {
-    icon: 'https://img.icons8.com/?size=100&id=1476&format=png&color=000000',
-  },
+import Link from "next/link";
+import { useState } from "react";
+
+// Code Block Component with Copy Button
+const CodeBlock = ({ code, language }: { code: string, language: string }) => {
+  const [copied, setCopied] = useState(false);
+  
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+  
+  return (
+    <div className="bg-gray-900 rounded-md p-4 overflow-x-auto border border-gray-700 relative">
+      <button 
+        onClick={copyToClipboard}
+        className="absolute top-2 right-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm transition-colors"
+      >
+        {copied ? "Copied!" : "Copy"}
+      </button>
+      <pre className="text-sm">
+        <code className={`language-${language} text-gray-300`}>{code}</code>
+      </pre>
+    </div>
+  );
 };
 
 // Rating component for visualizing scores
@@ -34,6 +54,7 @@ export default function PostgreSQL() {
   const databaseInfo = {
     name: "PostgreSQL",
     logo: "https://img.icons8.com/?size=100&id=1476&format=png&color=000000",
+    officialDocs: "https://www.postgresql.org/docs/",
     ratings: {
       performance: 4,
       scalability: 3,
@@ -77,71 +98,64 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(50) UNIQUE NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL,
-  password_hash VARCHAR(100) NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-  last_login TIMESTAMP WITH TIME ZONE,
-  is_active BOOLEAN DEFAULT TRUE
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Products table with relations
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
-  description TEXT,
   price DECIMAL(10, 2) NOT NULL,
-  inventory_count INTEGER NOT NULL DEFAULT 0,
-  category_id INTEGER REFERENCES categories(id),
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  category_id INTEGER REFERENCES categories(id)
 );
 
--- Orders with JSON data example
+-- Orders with JSON data
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
   status VARCHAR(20) NOT NULL,
-  shipping_address JSONB NOT NULL,
   order_items JSONB NOT NULL,
-  total_amount DECIMAL(12, 2) NOT NULL,
-  ordered_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  total_amount DECIMAL(12, 2) NOT NULL
 );
 
--- Add indexes for performance
+-- Simple indexes
 CREATE INDEX idx_products_category ON products(category_id);
 CREATE INDEX idx_orders_user ON orders(user_id);`,
-    queryExample: `-- Basic query with joins
+    queryExample: `-- Basic query with join
 SELECT 
   o.id AS order_id,
   u.username,
-  o.total_amount,
-  o.ordered_at,
-  o.status
+  o.total_amount
 FROM orders o
 JOIN users u ON o.user_id = u.id
-WHERE o.ordered_at > NOW() - INTERVAL '30 days'
-ORDER BY o.ordered_at DESC;
+WHERE o.status = 'completed';
 
 -- Query using JSON functions
 SELECT 
   id,
-  order_items -> 'items' as items,
-  jsonb_array_length(order_items -> 'items') as item_count
+  order_items -> 'items' as items
 FROM orders
-WHERE order_items @> '{"shipping_method": "express"}';
+WHERE order_items @> '{"shipping": "express"}';
 
--- Complex aggregation with window functions
+-- Simple aggregation
 SELECT 
-  p.category_id,
-  c.name AS category_name,
-  p.id AS product_id,
-  p.name AS product_name,
-  p.price,
-  AVG(p.price) OVER (PARTITION BY p.category_id) AS avg_category_price,
-  p.price - AVG(p.price) OVER (PARTITION BY p.category_id) AS price_diff_from_avg
-FROM products p
-JOIN categories c ON p.category_id = c.id
-ORDER BY category_id, price_diff_from_avg DESC;`
+  category_id,
+  AVG(price) AS avg_price,
+  COUNT(*) AS product_count
+FROM products
+GROUP BY category_id;`
   };
+
+  // Calculate overall score
+  const ratings = Object.values(databaseInfo.ratings);
+  const overallScore = Math.round((ratings.reduce((a, b) => a + b, 0) / ratings.length) * 10) / 10;
+
+  // Sample data for visual representation
+  const sampleData = [
+    { id: 1, username: "john_doe", email: "john@example.com", created_at: "2025-02-15 09:30:00" },
+    { id: 2, username: "jane_smith", email: "jane@example.com", created_at: "2025-02-18 14:25:00" },
+    { id: 3, username: "bob_johnson", email: "bob@example.com", created_at: "2025-02-25 11:15:00" }
+  ];
 
   return (
     <div className="min-h-screen bg-gray-900 p-8">
@@ -150,15 +164,28 @@ ORDER BY category_id, price_diff_from_avg DESC;`
         <p className="text-xl text-gray-400 max-w-2xl mx-auto">
           The world's most advanced open source relational database
         </p>
+        <div className="mt-4">
+          <Link 
+            href={databaseInfo.officialDocs} 
+            target="_blank" 
+            className="text-blue-400 hover:text-blue-300 transition-colors"
+          >
+            Official Documentation →
+          </Link>
+        </div>
       </header>
       
       <div className="max-w-6xl mx-auto bg-gray-800 rounded-lg shadow-md overflow-hidden border border-gray-700">
-        {/* Database header */}
+        {/* Database header with overall score */}
         <div className="p-6 border-b border-gray-700 flex items-center gap-4">
           <img src={databaseInfo.logo} alt="PostgreSQL logo" className="w-16 h-16 bg-white rounded p-1" />
-          <div>
+          <div className="flex-grow">
             <h2 className="text-2xl font-bold text-gray-100">{databaseInfo.name}</h2>
             <p className="text-sm text-gray-400">Object-Relational Database Management System</p>
+          </div>
+          <div className="bg-gray-700 p-4 rounded-lg flex flex-col items-center">
+            <div className="text-3xl font-bold text-blue-400">{overallScore}</div>
+            <div className="text-xs text-gray-300">OVERALL SCORE</div>
           </div>
         </div>
         
@@ -205,17 +232,62 @@ ORDER BY category_id, price_diff_from_avg DESC;`
         {/* Data Model Example */}
         <div className="p-6 border-b border-gray-700">
           <h3 className="font-semibold mb-2 text-lg text-gray-200">Data Model Example</h3>
-          <div className="bg-gray-900 rounded-md p-4 overflow-x-auto border border-gray-700">
-            <pre className="text-sm text-gray-300">{databaseInfo.modelExample}</pre>
-          </div>
+          <CodeBlock code={databaseInfo.modelExample} language="sql" />
         </div>
         
         {/* Query Example */}
-        <div className="p-6">
+        <div className="p-6 border-b border-gray-700">
           <h3 className="font-semibold mb-2 text-lg text-gray-200">Query Examples</h3>
-          <div className="bg-gray-900 rounded-md p-4 overflow-x-auto border border-gray-700">
-            <pre className="text-sm text-gray-300">{databaseInfo.queryExample}</pre>
+          <CodeBlock code={databaseInfo.queryExample} language="sql" />
+        </div>
+        
+        {/* Visual Data Example */}
+        <div className="p-6">
+          <h3 className="font-semibold mb-2 text-lg text-gray-200">Data Visualization Example</h3>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="bg-gray-700">
+                  <th className="p-2 text-left text-gray-200 border border-gray-600">ID</th>
+                  <th className="p-2 text-left text-gray-200 border border-gray-600">Username</th>
+                  <th className="p-2 text-left text-gray-200 border border-gray-600">Email</th>
+                  <th className="p-2 text-left text-gray-200 border border-gray-600">Created At</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sampleData.map((row, index) => (
+                  <tr key={index} className={index % 2 === 0 ? "bg-gray-800" : "bg-gray-900"}>
+                    <td className="p-2 border border-gray-600 text-gray-300">{row.id}</td>
+                    <td className="p-2 border border-gray-600 text-gray-300">{row.username}</td>
+                    <td className="p-2 border border-gray-600 text-gray-300">{row.email}</td>
+                    <td className="p-2 border border-gray-600 text-gray-300">{row.created_at}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+          <p className="text-xs text-gray-400 mt-2">Sample data visualization - Users table</p>
+        </div>
+        
+        {/* Kubernetes Config Example */}
+        <div className="p-6 border-t border-gray-700">
+          <h3 className="font-semibold mb-2 text-lg text-gray-200">Kubernetes PersistentVolumeClaim Example</h3>
+          <CodeBlock 
+            code={`apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-volume-claim
+  labels:
+    app: postgres
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi`} 
+            language="yaml" 
+          />
         </div>
       </div>
     </div>
