@@ -160,3 +160,5 @@ Designed to operate at the network edge closer to data sources.
 - **CouchDB Lite**: Embedded JSON document database
 - **Realm**: Mobile database that runs directly on devices
 - **RocksDB**: Embedded key-value store for edge environments
+
+[Contributing Guidelines](CONTRIBUTING.md)
