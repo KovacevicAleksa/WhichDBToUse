@@ -5,7 +5,7 @@ import { DatabaseInfoType } from "../types/DatabaseInfoType";
 
 const databaseInfo: DatabaseInfoType = {
   name: "PostgreSQL",
-  logo: "https://img.icons8.com/?size=100&id=1476&format=png&color=000000",
+  logo: "https://img.icons8.com/?size=100&id=38561&format=png&color=000000",
   officialDocs: "https://www.postgresql.org/docs/",
   ratings: {
     performance: 4,

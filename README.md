@@ -1,6 +1,6 @@
 # Choosing the Right Database
 
-Selecting the right database is essential for the success of your project. Understanding your specific needs and use case will guide you in choosing the appropriate database type. Below is a list of different database types and options you can consider. Additionally, you can visit the GitHub page (https://..) to access an interactive tool that will assist you in making an informed decision based on your project's requirements.
+Selecting the right database is essential for the success of your project. Understanding your specific needs and use case will guide you in choosing the appropriate database type. Below is a list of different database types and options you can consider. Additionally, you can visit the [GitHub page](https://kovacevicaleksa.github.io/WhichDBToUse/) to access an interactive tool that will assist you in making an informed decision based on your project's requirements.
 
 ## Table of Contents
 - [Relational Databases (SQL)](#relational-databases-sql)
