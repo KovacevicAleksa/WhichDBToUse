@@ -17,6 +17,16 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
