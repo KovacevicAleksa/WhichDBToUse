@@ -1,4 +1,4 @@
-import {DatabaseInfoMainPageType} from './types/DatabaseInfoMainPageType';
+import {DatabaseInfoMainPageType} from '../src/app/types/DatabaseInfoMainPageType';
 
 
 export const DatabaseMainPage: DatabaseInfoMainPageType[] = [

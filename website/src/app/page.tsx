@@ -5,7 +5,7 @@ import { Star, StarHalf, Search, CheckCircle } from 'lucide-react';
 import {RatingMainPage} from './components/RatingMainPage';
 import {StarRatingMainPage} from './components/StarRatingMainPage';
 import {DatabaseInfoMainPageType} from './types/DatabaseInfoMainPageType';
-import {DatabaseMainPage} from './DatabaseMainPage'; 
+import {DatabaseMainPage} from '../../data/DatabaseMainPage'; 
 import {FooterMainPage} from './components/FooterMainPage'
 
 
@@ -13,22 +13,28 @@ export default function AdvancedDatabaseSelector() {
   // State for preferences
   const [preferences, setPreferences] = useState({
     // Left side characteristics
-    performance: 3,
     scalability: 3,
-    dataConsistency: 3,
-    horizontalScaling: 3,
+    performance: 3,
+    flexibility: 3,
+    consistency: 3,
+    reliability: 3,
+    security: 3,
 
     // Center characteristics
-    complexity: 3,
-    security: 3,
-    querySpeed: 3,
+    costEfficiency: 3,
+    communitySupport: 3,
     transactionSupport: 3,
+    integrationEase: 3,
+    queryCapability: 3,
+    realTimeProcessing: 3,
 
     // Right side characteristics
-    cloudReadiness: 3,
-    dataModelFlexibility: 3,
-    backupAndRecovery: 3,
-    verticalScaling: 3
+    geographicDistribution: 3,
+    dataVolumeCapacity: 3,
+    elasticity: 3,
+    developerFriendliness: 3,
+    cloudNativeSupport: 3,
+    multiModelCapability: 3,
   });
 
   // Filtered databases state
@@ -64,69 +70,105 @@ export default function AdvancedDatabaseSelector() {
       <div className="bg-gray-800 rounded-lg p-8 mb-12">
         <h2 className="text-2xl text-gray-100 text-center mb-8">Database Preference Matcher</h2>
         
-        {/* Updated Grid Layout for Preferences */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          <RatingMainPage 
-            label="Performance" 
-            value={preferences.performance}
-            onChange={(value) => handleRatingChange('performance', value)}
-          />
-          <RatingMainPage 
-            label="Scalability" 
-            value={preferences.scalability}
-            onChange={(value) => handleRatingChange('scalability', value)}
-          />
-          <RatingMainPage 
-            label="Data Consistency" 
-            value={preferences.dataConsistency}
-            onChange={(value) => handleRatingChange('dataConsistency', value)}
-          />
-          <RatingMainPage 
-            label="Horizontal Scaling" 
-            value={preferences.horizontalScaling}
-            onChange={(value) => handleRatingChange('horizontalScaling', value)}
-          />
-          <RatingMainPage 
-            label="Complexity" 
-            value={preferences.complexity}
-            onChange={(value) => handleRatingChange('complexity', value)}
-          />
-          <RatingMainPage 
-            label="Security" 
-            value={preferences.security}
-            onChange={(value) => handleRatingChange('security', value)}
-          />
-          <RatingMainPage 
-            label="Query Speed" 
-            value={preferences.querySpeed}
-            onChange={(value) => handleRatingChange('querySpeed', value)}
-          />
-          <RatingMainPage 
-            label="Transaction Support" 
-            value={preferences.transactionSupport}
-            onChange={(value) => handleRatingChange('transactionSupport', value)}
-          />
-          <RatingMainPage 
-            label="Cloud Readiness" 
-            value={preferences.cloudReadiness}
-            onChange={(value) => handleRatingChange('cloudReadiness', value)}
-          />
-          <RatingMainPage 
-            label="Data Model Flexibility" 
-            value={preferences.dataModelFlexibility}
-            onChange={(value) => handleRatingChange('dataModelFlexibility', value)}
-          />
-          <RatingMainPage
-            label="Backup & Recovery" 
-            value={preferences.backupAndRecovery}
-            onChange={(value) => handleRatingChange('backupAndRecovery', value)}
-          />
-          <RatingMainPage
-            label="Vertical Scaling" 
-            value={preferences.verticalScaling}
-            onChange={(value) => handleRatingChange('verticalScaling', value)}
-          />
-        </div>
+      {/* Updated Grid Layout for Preferences */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {/* Left side characteristics */}
+        <RatingMainPage 
+          label="Scalability" 
+          value={preferences.scalability}
+          onChange={(value) => handleRatingChange('scalability', value)}
+        />
+        <RatingMainPage 
+          label="Performance" 
+          value={preferences.performance}
+          onChange={(value) => handleRatingChange('performance', value)}
+        />
+        <RatingMainPage 
+          label="Flexibility" 
+          value={preferences.flexibility}
+          onChange={(value) => handleRatingChange('flexibility', value)}
+        />
+        <RatingMainPage 
+          label="Consistency" 
+          value={preferences.consistency}
+          onChange={(value) => handleRatingChange('consistency', value)}
+        />
+        <RatingMainPage 
+          label="Reliability" 
+          value={preferences.reliability}
+          onChange={(value) => handleRatingChange('reliability', value)}
+        />
+        <RatingMainPage 
+          label="Security" 
+          value={preferences.security}
+          onChange={(value) => handleRatingChange('security', value)}
+        />
+
+        {/* Center characteristics */}
+        <RatingMainPage 
+          label="Cost Efficiency" 
+          value={preferences.costEfficiency}
+          onChange={(value) => handleRatingChange('costEfficiency', value)}
+        />
+        <RatingMainPage 
+          label="Community Support" 
+          value={preferences.communitySupport}
+          onChange={(value) => handleRatingChange('communitySupport', value)}
+        />
+        <RatingMainPage 
+          label="Transaction Support" 
+          value={preferences.transactionSupport}
+          onChange={(value) => handleRatingChange('transactionSupport', value)}
+        />
+        <RatingMainPage 
+          label="Integration Ease" 
+          value={preferences.integrationEase}
+          onChange={(value) => handleRatingChange('integrationEase', value)}
+        />
+        <RatingMainPage 
+          label="Query Capability" 
+          value={preferences.queryCapability}
+          onChange={(value) => handleRatingChange('queryCapability', value)}
+        />
+        <RatingMainPage 
+          label="Real-Time Processing" 
+          value={preferences.realTimeProcessing}
+          onChange={(value) => handleRatingChange('realTimeProcessing', value)}
+        />
+
+        {/* Right side characteristics */}
+        <RatingMainPage 
+          label="Geographic Distribution" 
+          value={preferences.geographicDistribution}
+          onChange={(value) => handleRatingChange('geographicDistribution', value)}
+        />
+        <RatingMainPage 
+          label="Data Volume Capacity" 
+          value={preferences.dataVolumeCapacity}
+          onChange={(value) => handleRatingChange('dataVolumeCapacity', value)}
+        />
+        <RatingMainPage 
+          label="Elasticity" 
+          value={preferences.elasticity}
+          onChange={(value) => handleRatingChange('elasticity', value)}
+        />
+        <RatingMainPage 
+          label="Developer Friendliness" 
+          value={preferences.developerFriendliness}
+          onChange={(value) => handleRatingChange('developerFriendliness', value)}
+        />
+        <RatingMainPage 
+          label="Cloud-Native Support" 
+          value={preferences.cloudNativeSupport}
+          onChange={(value) => handleRatingChange('cloudNativeSupport', value)}
+        />
+        <RatingMainPage 
+          label="Multi-Model Capability" 
+          value={preferences.multiModelCapability}
+          onChange={(value) => handleRatingChange('multiModelCapability', value)}
+        />
+      </div>
+
 
         {/* Find Databases Button */}
         <div className="flex justify-center mt-8">
