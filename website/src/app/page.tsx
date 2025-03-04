@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import React, { useState } from 'react';
-import { Star, StarHalf, Search, CheckCircle } from 'lucide-react';
+import {Search, CheckCircle } from 'lucide-react';
 import {RatingMainPage} from './components/RatingMainPage';
 import {StarRatingMainPage} from './components/StarRatingMainPage';
 import {DatabaseInfoMainPageType} from './types/DatabaseInfoMainPageType';
@@ -200,7 +201,7 @@ export default function AdvancedDatabaseSelector() {
             "
           >
             <div className="p-6 flex flex-col items-center">
-              <img 
+              <Image 
                 src={db.logo} 
                 alt={`${db.name} logo`} 
                 className="w-24 h-24 object-contain mb-4 rounded"
