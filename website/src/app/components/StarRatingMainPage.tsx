@@ -1,4 +1,4 @@
-import { Star, StarHalf, Search, CheckCircle } from 'lucide-react';
+import { Star, StarHalf} from 'lucide-react';
 
 // Star Rating Component
 export const StarRatingMainPage = ({ score }: { score: number }) => {
