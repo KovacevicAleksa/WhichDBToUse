@@ -38,7 +38,13 @@ export function DBMainComponent({ databaseInfo }: DatabaseInfoTypeProps) {
       <div className="max-w-6xl mx-auto bg-gray-800 rounded-lg shadow-md overflow-hidden border border-gray-700">
         {/* Database header with overall score */}
         <div className="p-6 border-b border-gray-700 flex items-center gap-4">
-          <Image src={databaseInfo.logo} alt="PostgreSQL logo" className="w-16 h-16 bg-white rounded p-1" />
+          <Image
+            src={databaseInfo.logo}
+            alt="PostgreSQL logo"
+            width={100}
+            height={100}
+            className="bg-white rounded p-1"
+          />          
           <div className="flex-grow">
             <h2 className="text-2xl font-bold text-gray-100">{databaseInfo.name}</h2>
             <p className="text-sm text-gray-400">{databaseInfo.DBtype}</p>
