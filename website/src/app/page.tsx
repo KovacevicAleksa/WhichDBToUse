@@ -203,6 +203,8 @@ export default function AdvancedDatabaseSelector() {
             <div className="p-6 flex flex-col items-center">
               <Image 
                 src={db.logo} 
+                width={100}
+                height={100}
                 alt={`${db.name} logo`} 
                 className="w-24 h-24 object-contain mb-4 rounded"
               />
