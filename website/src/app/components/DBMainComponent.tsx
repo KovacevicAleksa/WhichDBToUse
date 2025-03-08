@@ -98,13 +98,13 @@ export function DBMainComponent({ databaseInfo }: DatabaseInfoTypeProps) {
         {/* Data Model Example */}
         <div className="p-6 border-b border-gray-700">
           <h3 className="font-semibold mb-2 text-lg text-gray-200">Data Model Example</h3>
-          <CodeBlock code={databaseInfo.modelExample} language="sql" />
+          <CodeBlock code={databaseInfo.modelExample} language={databaseInfo.languageDataModelExample} />
         </div>
 
         {/* Query Example */}
         <div className="p-6 border-b border-gray-700">
           <h3 className="font-semibold mb-2 text-lg text-gray-200">Query Examples</h3>
-          <CodeBlock code={databaseInfo.queryExample} language="sql" />
+          <CodeBlock code={databaseInfo.queryExample} language={databaseInfo.languageQueryExamples} />
         </div>
 
         {/* Visual Data Example */}
@@ -123,10 +123,10 @@ export function DBMainComponent({ databaseInfo }: DatabaseInfoTypeProps) {
               <tbody>
                 {databaseInfo.sampleData.map((row, index) => (
                   <tr key={index} className={index % 2 === 0 ? "bg-gray-800" : "bg-gray-900"}>
-                    <td className="p-2 border border-gray-600 text-gray-300">{row.id}</td>
-                    <td className="p-2 border border-gray-600 text-gray-300">{row.username}</td>
-                    <td className="p-2 border border-gray-600 text-gray-300">{row.email}</td>
-                    <td className="p-2 border border-gray-600 text-gray-300">{row.created_at}</td>
+                    <td className="p-2 border border-gray-600 text-gray-300">{row[keys[0]]}</td>
+                    <td className="p-2 border border-gray-600 text-gray-300">{row[keys[1]]}</td>
+                    <td className="p-2 border border-gray-600 text-gray-300">{row[keys[2]]}</td>
+                    <td className="p-2 border border-gray-600 text-gray-300">{row[keys[3]]}</td>
                   </tr>
                 ))}
               </tbody>

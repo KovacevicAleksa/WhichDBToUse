@@ -29,10 +29,9 @@ export interface DatabaseInfoType {
     features: string[];
     modelExample: string;
     queryExample: string;
-    sampleData: {
-      id: number;
-      username: string;
-      email: string;
-      created_at: string;
-    }[];
+    sampleData: Array<{
+      [key: string]: any;
+    }>;
+    languageDataModelExample: string;
+    languageQueryExamples: string;
   }
