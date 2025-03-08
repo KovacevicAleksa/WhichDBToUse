@@ -1,5 +1,7 @@
 import {DatabaseInfoMainPageType} from '../types/DatabaseInfoMainPageType';
 
+// This approach is faster as it avoids loading the entire large objects on the main page.
+// However, this may lead to repetition of object fields since the data is directly written instead of being dynamically loaded from a source.
 
 export const DatabaseMainPage: DatabaseInfoMainPageType[] = [
   {
