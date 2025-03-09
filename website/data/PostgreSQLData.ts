@@ -7,24 +7,24 @@ export const PostgreSQLData: DatabaseInfoType = {
   logo: "https://img.icons8.com/?size=100&id=38561&format=png&color=000000",
   officialDocs: "https://www.postgresql.org/docs/",
   ratings: {
-    scalability: 3.5,            // PostgreSQL scales well, but not as easily as NoSQL solutions
-    performance: 4.5,            // High performance, especially with indexing and query optimization
-    flexibility: 4,              // Supports relational data well, but not as flexible as document stores
-    consistency: 5,              // Full ACID compliance ensures strong consistency
-    reliability: 5,              // Extremely reliable with replication and failover options
-    security: 4.5,              // Strong security features, role-based access, SSL, and encryption
-    costEfficiency: 4,          // Open-source and free, but operational costs can vary
-    communitySupport: 4.5,      // Large and active community, plus commercial support available
-    transactionSupport: 5,      // Excellent transaction support with ACID compliance
-    integrationEase: 4,         // Integrates well with many tools, but requires setup
-    queryCapability: 5,         // Advanced SQL, JSONB support, indexing, and analytics
-    realTimeProcessing: 3.5,    // Can handle real-time workloads but not as optimized as specialized solutions
-    geographicDistribution: 3.5, // Supports replication and multi-region but requires manual setup
-    dataVolumeCapacity: 4.5,    // Handles large datasets effectively, but requires tuning
-    elasticity: 3,              // Vertical scaling is easy, but horizontal scaling is more complex
-    developerFriendliness: 4,   // Great documentation, but can have a steep learning curve
-    cloudNativeSupport: 3,      // PostgreSQL has cloud options, but requires additional setup for full cloud-native features
-    multiModelCapability: 2     // Primarily a relational database, but has some document and key-value support
+    scalability: 5,
+    performance: 5,
+    flexibility: 5,
+    consistency: 5,
+    reliability: 5,
+    security: 5,
+    costEfficiency: 5,
+    communitySupport: 5,
+    transactionSupport: 5,
+    integrationEase: 5,
+    queryCapability: 5,
+    realTimeProcessing: 5,
+    geographicDistribution: 5,
+    dataVolumeCapacity: 5,
+    elasticity: 5,
+    developerFriendliness: 5,
+    cloudNativeSupport: 5,
+    multiModelCapability: 5
   },
   DBtype: "Object-Relational Database Management System",
   maintext: "The world's most advanced open source relational database",
@@ -107,5 +107,7 @@ export const PostgreSQLData: DatabaseInfoType = {
     { id: 1, username: "john_doe", email: "john@example.com", created_at: "2025-02-15 09:30:00" },
     { id: 2, username: "jane_smith", email: "jane@example.com", created_at: "2025-02-18 14:25:00" },
     { id: 3, username: "bob_johnson", email: "bob@example.com", created_at: "2025-02-25 11:15:00" }
-  ]
+  ],
+  languageDataModelExample: "sql",
+  languageQueryExamples:"sql"
 };
