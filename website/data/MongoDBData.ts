@@ -4,7 +4,7 @@ import { DatabaseInfoType } from "../src/app/types/DatabaseInfoType";
 
 export const MongoDBData: DatabaseInfoType = {
   name: "MongoDB",
-  logo: "https://img.icons8.com/?size=100&id=74402&format=png&color=000000",
+  logo: "https://cdn.simpleicons.org/mongodb/47A248",
   officialDocs: "https://www.mongodb.com/docs/",
   ratings: {
     scalability: 5,

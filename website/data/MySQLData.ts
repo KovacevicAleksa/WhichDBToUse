@@ -4,7 +4,7 @@ import { DatabaseInfoType } from "../src/app/types/DatabaseInfoType";
 
 export const MySQLData: DatabaseInfoType = {
   name: "MySQL",
-  logo: "https://img.icons8.com/?size=100&id=UFXRpPFebwa2&format=png&color=000000",
+  logo: "https://cdn.simpleicons.org/mysql/4479A1",
   officialDocs: "https://dev.mysql.com/doc/",
   ratings: {
     scalability: 5,
