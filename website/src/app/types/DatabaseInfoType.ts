@@ -29,8 +29,8 @@ export interface DatabaseInfoType {
     features: string[];
     modelExample: string;
     queryExample: string;
-    sampleData: Array<{
-      [key: string]: any;
+    sampleData: Array<{ 
+      [key: string]: string | number; 
     }>;
     languageDataModelExample: string;
     languageQueryExamples: string;
